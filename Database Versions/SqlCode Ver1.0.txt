@@ -1,0 +1,43 @@
+CREATE TABLE organizaton
+(
+  address INT NOT NULL,
+  Hotline_no INT NOT NULL,
+  PRIMARY KEY (address)
+);
+
+CREATE TABLE Manager
+(
+  manager_name INT NOT NULL,
+  Manager_no INT NOT NULL,
+  PRIMARY KEY (manager_name)
+);
+
+CREATE TABLE Volunteer
+(
+  Volunteer_name INT NOT NULL,
+  volunteer_address INT NOT NULL,
+  PRIMARY KEY (Volunteer_name)
+);
+
+CREATE TABLE Case
+(
+  Case_Id INT NOT NULL,
+  Case_no INT NOT NULL,
+  Case_address INT NOT NULL,
+  Case_First_name INT NOT NULL,
+  Case_Second_name INT NOT NULL,
+  NewAttribute INT NOT NULL,
+  NewAttribute INT NOT NULL,
+  Case_type INT NOT NULL,
+  Case_marital_status INT NOT NULL,
+  no_of_childeren INT NOT NULL,
+  PRIMARY KEY (Case_Id)
+);
+
+CREATE TABLE Approval_status
+(
+  Approval_id INT NOT NULL,
+  status INT NOT NULL,
+  NewAttribute INT NOT NULL,
+  PRIMARY KEY (Approval_id)
+);
