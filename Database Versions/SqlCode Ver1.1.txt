@@ -1,0 +1,71 @@
+CREATE TABLE organizaton
+(
+  address INT NOT NULL,
+  Hotline_no INT NOT NULL,
+  PRIMARY KEY (address)
+);
+
+CREATE TABLE manager
+(
+  manager_name INT NOT NULL,
+  Manager_no INT NOT NULL,
+  PRIMARY KEY (manager_name)
+);
+
+CREATE TABLE Volunteer
+(
+  Volunteer_name INT NOT NULL,
+  volunteer_address INT NOT NULL,
+  Volunteer_national_id INT NOT NULL,
+  Volunteer_id INT NOT NULL,
+  PRIMARY KEY (Volunteer_id)
+);
+
+CREATE TABLE Case
+(
+  Case_Id INT NOT NULL,
+  Case_no INT NOT NULL,
+  Case_address INT NOT NULL,
+  Case_First_name INT NOT NULL,
+  Case_Second_name INT NOT NULL,
+  paper1 INT NOT NULL,
+  paper2 INT NOT NULL,
+  paper3 INT NOT NULL,
+  paper4 INT NOT NULL,
+  paper5 INT NOT NULL,
+  Case_type INT NOT NULL,
+  Case_marital_status INT NOT NULL,
+  case_national_id INT NOT NULL,
+  Case_job_type INT NOT NULL,
+  PRIMARY KEY (Case_Id)
+);
+
+CREATE TABLE Approval_status
+(
+  Approval_id INT NOT NULL,
+  status INT NOT NULL,
+  PRIMARY KEY (Approval_id)
+);
+
+CREATE TABLE Family
+(
+  no_of_childeren INT NOT NULL,
+  first_child_full_name INT NOT NULL,
+  Second_child_fullname INT NOT NULL,
+  third_child_fullname INT NOT NULL,
+  husband_name INT NOT NULL,
+  husband_job_type INT NOT NULL,
+  Case_id INT NOT NULL,
+  PRIMARY KEY (Case_id)
+);
+
+CREATE TABLE Residence_
+(
+  resdience_type INT NOT NULL,
+  residence_satus INT NOT NULL,
+  no_of_rooms INT NOT NULL,
+  monthly_rent INT NOT NULL,
+  furniture_status INT NOT NULL,
+  Case_id INT NOT NULL,
+  PRIMARY KEY (Case_id)
+);
