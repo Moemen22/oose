@@ -1,0 +1,1272 @@
+-- phpMyAdmin SQL Dump
+-- version 5.1.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Jan 01, 2022 at 06:31 PM
+-- Server version: 10.4.21-MariaDB
+-- PHP Version: 8.0.12
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `db`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `activties`
+--
+
+CREATE TABLE `activties` (
+  `ID` int(255) NOT NULL,
+  `Organization_Branch_ID` int(255) NOT NULL,
+  `Activites_Type_ID` int(255) NOT NULL,
+  `Activites_Date` date NOT NULL,
+  `Activites_Expenses` int(255) NOT NULL,
+  `Activites_No_Of_Attende` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `activties`
+--
+
+INSERT INTO `activties` (`ID`, `Organization_Branch_ID`, `Activites_Type_ID`, `Activites_Date`, `Activites_Expenses`, `Activites_No_Of_Attende`) VALUES
+(2008, 1, 0, '0000-00-00', 200, 20);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `activties_type`
+--
+
+CREATE TABLE `activties_type` (
+  `Activites_Type_ID` int(255) NOT NULL,
+  `Activites_Type` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `address`
+--
+
+CREATE TABLE `address` (
+  `ID` int(255) NOT NULL,
+  `User_Address_ID` int(255) NOT NULL,
+  `User_Address_Name` varchar(255) NOT NULL,
+  `Parent_ID` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bathroom_details`
+--
+
+CREATE TABLE `bathroom_details` (
+  `ID` int(255) NOT NULL,
+  `Organization_Branch_ID` int(255) NOT NULL,
+  `Room_ID` int(255) NOT NULL,
+  `Dettol_Usage` varchar(255) NOT NULL,
+  `Tissue_Usage` varchar(255) NOT NULL,
+  `towels_Usage` varchar(255) NOT NULL,
+  `User_ID` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `bedroom_details`
+--
+
+CREATE TABLE `bedroom_details` (
+  `ID` int(255) NOT NULL,
+  `Organization_Branch_ID` int(255) NOT NULL,
+  `Room_ID` int(255) NOT NULL,
+  `Room_Type` varchar(255) NOT NULL,
+  `Available_Beds` int(255) NOT NULL,
+  `Unavailable_Beds` int(255) NOT NULL,
+  `User_ID` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `bedroom_details`
+--
+
+INSERT INTO `bedroom_details` (`ID`, `Organization_Branch_ID`, `Room_ID`, `Room_Type`, `Available_Beds`, `Unavailable_Beds`, `User_ID`) VALUES
+(2000, 1, 22, 'nursery', 10, 0, 2008);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `case`
+--
+
+CREATE TABLE `case` (
+  `Case_ID` int(255) NOT NULL,
+  `Case_address` varchar(255) NOT NULL,
+  `Case_FirstName` varchar(255) NOT NULL,
+  `Case_LastName` varchar(255) NOT NULL,
+  `Case_Type` varchar(255) NOT NULL,
+  `Case_Marital_Status` varchar(255) NOT NULL,
+  `Case_National_ID` int(255) NOT NULL,
+  `Case_Job_Title` varchar(255) NOT NULL,
+  `Case_Approval_Status` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `case_requirments`
+--
+
+CREATE TABLE `case_requirments` (
+  `Case_ID` int(255) NOT NULL,
+  `Case_Criminal_Record` blob NOT NULL,
+  `Case_Health_Record` blob NOT NULL,
+  `Case_National_ID` blob NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `customized_report`
+--
+
+CREATE TABLE `customized_report` (
+  `ID` int(255) NOT NULL,
+  `Report_Name` varchar(255) NOT NULL,
+  `User_ID` int(255) NOT NULL,
+  `SQL_Statement` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `donation`
+--
+
+CREATE TABLE `donation` (
+  `Sponser_ID` int(255) NOT NULL,
+  `Donation_Type` varchar(255) NOT NULL,
+  `Donation_Date` date NOT NULL,
+  `Donation_Quantity` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `equipment_type`
+--
+
+CREATE TABLE `equipment_type` (
+  `Equipment_Type_ID` int(255) NOT NULL,
+  `Equipment_Name` varchar(255) NOT NULL,
+  `Equipment_Type_Quantity` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `family`
+--
+
+CREATE TABLE `family` (
+  `Case_ID` int(255) NOT NULL,
+  `Husband_First Name` varchar(255) NOT NULL,
+  `Husband_Last Name` varchar(255) NOT NULL,
+  `No_Of_Childeren` int(255) NOT NULL,
+  `First_Child_Full_Name` varchar(255) NOT NULL,
+  `Second_Child_Full_Name` varchar(255) NOT NULL,
+  `Third_Child_Full_Name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `files`
+--
+
+CREATE TABLE `files` (
+  `ID` int(255) NOT NULL,
+  `File_Friendly_Name` varchar(255) NOT NULL,
+  `File_Path` varchar(255) NOT NULL,
+  `File_Type_ID` int(255) NOT NULL,
+  `User_ID` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `file_type`
+--
+
+CREATE TABLE `file_type` (
+  `File_Type_ID` int(255) NOT NULL,
+  `File_Type` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `food_type`
+--
+
+CREATE TABLE `food_type` (
+  `Food_Type_ID` int(255) NOT NULL,
+  `Food_Name` varchar(255) NOT NULL,
+  `Food_Type_Qunatity` int(255) NOT NULL,
+  `Food_Type_Expiration_Date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `kitchen_details`
+--
+
+CREATE TABLE `kitchen_details` (
+  `Organization_Branch_ID` int(255) NOT NULL,
+  `Room_ID` int(255) NOT NULL,
+  `Room_Type` varchar(255) NOT NULL,
+  `Food_Type_ID` int(255) NOT NULL,
+  `User_ID` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `languages`
+--
+
+CREATE TABLE `languages` (
+  `ID` int(255) NOT NULL,
+  `Name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `login`
+--
+
+CREATE TABLE `login` (
+  `User_ID` int(255) NOT NULL,
+  `Login_Password` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `medicine_type`
+--
+
+CREATE TABLE `medicine_type` (
+  `Medicine_Type_ID` int(255) NOT NULL,
+  `Medicine_Type_Name` int(255) NOT NULL,
+  `Medicine_Type_Qunatity` int(255) NOT NULL,
+  `Medicine_Type_Expiration_Date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `message`
+--
+
+CREATE TABLE `message` (
+  `ID` int(255) NOT NULL,
+  `Message_Template` text NOT NULL,
+  `Type_ID` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `message_user`
+--
+
+CREATE TABLE `message_user` (
+  `ID` int(255) NOT NULL,
+  `Message_ID` int(255) NOT NULL,
+  `User_ID` int(255) NOT NULL,
+  `Date_Time_Stamp` timestamp(6) NOT NULL DEFAULT current_timestamp(6) ON UPDATE current_timestamp(6)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `observing_screens_type`
+--
+
+CREATE TABLE `observing_screens_type` (
+  `Observing_Screens_Type_ID` int(255) NOT NULL,
+  `Observing_Screens_Quantity` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `options`
+--
+
+CREATE TABLE `options` (
+  `Options_ID` int(255) NOT NULL,
+  `Options_Name` varchar(255) NOT NULL,
+  `Options_Type` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `organization`
+--
+
+CREATE TABLE `organization` (
+  `ID` int(255) NOT NULL,
+  `Organization_Branch_ID` int(255) NOT NULL,
+  `Organization_Hotine` int(255) NOT NULL,
+  `Organization_Email` varchar(255) NOT NULL,
+  `No_Of_Floors` int(255) NOT NULL,
+  `No_Bed_Rooms_Per_Floor` int(255) NOT NULL,
+  `No_Security_Rooms_Per_Floor` int(255) NOT NULL,
+  `No_Bath_Rooms_Per_Floor` int(255) NOT NULL,
+  `No_Kitchen_Rooms_Per_Floor` int(255) NOT NULL,
+  `No_Storage_Rooms_Per_Floor` int(255) NOT NULL,
+  `No_Pharmacy_Rooms_Per_Floor` int(255) NOT NULL,
+  `No_Manager_Rooms_Per_Floor` int(255) NOT NULL,
+  `No_Waiting_Rooms_Per_Floor` int(255) NOT NULL,
+  `No_Mains_Rooms_Per_Floor` int(255) NOT NULL,
+  `No_Reciption_Rooms_Per_Floor` int(255) NOT NULL,
+  `User_ID` int(255) NOT NULL,
+  `Cameras_Per_Floor` int(255) NOT NULL,
+  `Fire_Sensors_Per_Floor` int(255) NOT NULL,
+  `Putoff_Fire_Buttons_Per_Floor` int(255) NOT NULL,
+  `Fire_Horns_Per_Floor` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `organization`
+--
+
+INSERT INTO `organization` (`ID`, `Organization_Branch_ID`, `Organization_Hotine`, `Organization_Email`, `No_Of_Floors`, `No_Bed_Rooms_Per_Floor`, `No_Security_Rooms_Per_Floor`, `No_Bath_Rooms_Per_Floor`, `No_Kitchen_Rooms_Per_Floor`, `No_Storage_Rooms_Per_Floor`, `No_Pharmacy_Rooms_Per_Floor`, `No_Manager_Rooms_Per_Floor`, `No_Waiting_Rooms_Per_Floor`, `No_Mains_Rooms_Per_Floor`, `No_Reciption_Rooms_Per_Floor`, `User_ID`, `Cameras_Per_Floor`, `Fire_Sensors_Per_Floor`, `Putoff_Fire_Buttons_Per_Floor`, `Fire_Horns_Per_Floor`) VALUES
+(2008, 1, 11, '@', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2008, 0, 0, 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `organization_maintance`
+--
+
+CREATE TABLE `organization_maintance` (
+  `Organization_Branch_ID` int(255) NOT NULL,
+  `Maintenance_Type` varchar(255) NOT NULL,
+  `No_Of_Devices` int(255) NOT NULL,
+  `Devices_ID` int(255) NOT NULL,
+  `User_ID` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orphan`
+--
+
+CREATE TABLE `orphan` (
+  `Orphan_ID` int(255) NOT NULL,
+  `Orphan_Health_Record` blob NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pages`
+--
+
+CREATE TABLE `pages` (
+  `ID` int(255) NOT NULL,
+  `Link_Address` varchar(255) NOT NULL,
+  `HTML` text NOT NULL,
+  `CSS` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payment_method`
+--
+
+CREATE TABLE `payment_method` (
+  `Payment_ID` int(255) NOT NULL,
+  `Payment_Name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payment_method_options`
+--
+
+CREATE TABLE `payment_method_options` (
+  `ID` int(255) NOT NULL,
+  `Payment_ID` int(255) NOT NULL,
+  `Option_ID` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payment_method_option_value`
+--
+
+CREATE TABLE `payment_method_option_value` (
+  `ID` int(255) NOT NULL,
+  `Payment_Option_ID` int(255) NOT NULL,
+  `Value` text NOT NULL,
+  `Sponser_ID` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pharmacy_details`
+--
+
+CREATE TABLE `pharmacy_details` (
+  `Organization_Branch_ID` int(255) NOT NULL,
+  `Room_ID` int(255) NOT NULL,
+  `Room_Type` varchar(255) NOT NULL,
+  `Medicine_Type_ID` int(255) NOT NULL,
+  `Equipment_Type_ID` int(255) NOT NULL,
+  `User_ID` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `residence`
+--
+
+CREATE TABLE `residence` (
+  `Case_ID` int(255) NOT NULL,
+  `Residence_Status` varchar(255) NOT NULL,
+  `No_Of_Rooms` int(255) NOT NULL,
+  `Monthly_Rent` int(255) NOT NULL,
+  `Furniture_Status` varchar(255) NOT NULL,
+  `Residence_Type` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `room`
+--
+
+CREATE TABLE `room` (
+  `ID` int(255) NOT NULL,
+  `Organization_Branch_ID` int(255) NOT NULL,
+  `Room_Type_ID` int(255) NOT NULL,
+  `Floor_No` int(255) NOT NULL,
+  `Room_ID` int(255) NOT NULL,
+  `No_Of_Used_Lamps` int(255) NOT NULL,
+  `User_ID` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `room_type`
+--
+
+CREATE TABLE `room_type` (
+  `Room_Type_ID` int(255) NOT NULL,
+  `Room_Type` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `security_details`
+--
+
+CREATE TABLE `security_details` (
+  `Organization_Branch_ID` int(255) NOT NULL,
+  `Room_ID` int(255) NOT NULL,
+  `Room_Type` varchar(255) NOT NULL,
+  `Observing_Screens_Type_ID` int(255) NOT NULL,
+  `User_ID` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sponser`
+--
+
+CREATE TABLE `sponser` (
+  `Sponser_ID` int(255) NOT NULL,
+  `Sponser_First_Name` varchar(255) NOT NULL,
+  `Sponser_Last_Name` varchar(255) NOT NULL,
+  `Sponser_Donation` varchar(255) NOT NULL,
+  `Sponser_National_ID` blob NOT NULL,
+  `Sponser_Job_Type` varchar(255) NOT NULL,
+  `Organization_Branch_ID` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `storage_details`
+--
+
+CREATE TABLE `storage_details` (
+  `Organization_Branch_ID` int(255) NOT NULL,
+  `Room_ID` int(255) NOT NULL,
+  `Room_Type` varchar(255) NOT NULL,
+  `Storage_Type_ID` int(255) NOT NULL,
+  `User_ID` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `storage_type`
+--
+
+CREATE TABLE `storage_type` (
+  `Storage_Type_ID` int(255) NOT NULL,
+  `Storage_Name` varchar(255) NOT NULL,
+  `Storage_Type_Quantity` int(255) NOT NULL,
+  `Stock_Expiration_Date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `translation`
+--
+
+CREATE TABLE `translation` (
+  `ID` int(255) NOT NULL,
+  `Translation_Name` varchar(255) NOT NULL,
+  `First_Lang_Code` int(255) NOT NULL,
+  `Sec_Lang_Code` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `translation_details`
+--
+
+CREATE TABLE `translation_details` (
+  `ID` int(255) NOT NULL,
+  `Trans_ID` int(255) NOT NULL,
+  `Word_ID` int(255) NOT NULL,
+  `Trans_Word_ID` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `type`
+--
+
+CREATE TABLE `type` (
+  `User_Type_ID` int(255) NOT NULL,
+  `User_Type_Name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user`
+--
+
+CREATE TABLE `user` (
+  `User_ID` int(255) NOT NULL,
+  `User_Type_ID` int(255) NOT NULL,
+  `User_Email` varchar(255) NOT NULL,
+  `User_First_Name` varchar(255) NOT NULL,
+  `User_Last_Name` varchar(255) NOT NULL,
+  `User_Address_ID` int(255) NOT NULL,
+  `User_Phone_No` int(255) NOT NULL,
+  `User_National_ID` blob NOT NULL,
+  `User_DOB` date NOT NULL,
+  `User_Shift` timestamp(6) NOT NULL DEFAULT current_timestamp(6) ON UPDATE current_timestamp(6),
+  `Organization_Branch_ID` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`User_ID`, `User_Type_ID`, `User_Email`, `User_First_Name`, `User_Last_Name`, `User_Address_ID`, `User_Phone_No`, `User_National_ID`, `User_DOB`, `User_Shift`, `Organization_Branch_ID`) VALUES
+(2008, 2, '@', 'mahm', 'ahm', 5, 11, '', '0000-00-00', '0000-00-00 00:00:00.000000', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_type_pages`
+--
+
+CREATE TABLE `user_type_pages` (
+  `ID` int(255) NOT NULL,
+  `User_Type_ID` int(255) NOT NULL,
+  `Page_ID` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `word`
+--
+
+CREATE TABLE `word` (
+  `ID` int(255) NOT NULL,
+  `Word` varchar(255) NOT NULL,
+  `Language_ID` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `activties`
+--
+ALTER TABLE `activties`
+  ADD PRIMARY KEY (`ID`),
+  ADD UNIQUE KEY `Organization_Branch_ID` (`Organization_Branch_ID`);
+
+--
+-- Indexes for table `activties_type`
+--
+ALTER TABLE `activties_type`
+  ADD PRIMARY KEY (`Activites_Type_ID`),
+  ADD UNIQUE KEY `Activites_Type` (`Activites_Type`);
+
+--
+-- Indexes for table `address`
+--
+ALTER TABLE `address`
+  ADD PRIMARY KEY (`ID`),
+  ADD UNIQUE KEY `Parent_ID` (`Parent_ID`),
+  ADD UNIQUE KEY `User_Address_ID` (`User_Address_ID`);
+
+--
+-- Indexes for table `bathroom_details`
+--
+ALTER TABLE `bathroom_details`
+  ADD PRIMARY KEY (`ID`),
+  ADD UNIQUE KEY `Room_ID` (`Room_ID`),
+  ADD UNIQUE KEY `User_ID` (`User_ID`),
+  ADD UNIQUE KEY `Organization_Branch_ID` (`Organization_Branch_ID`);
+
+--
+-- Indexes for table `bedroom_details`
+--
+ALTER TABLE `bedroom_details`
+  ADD PRIMARY KEY (`ID`),
+  ADD UNIQUE KEY `Room_ID` (`Room_ID`),
+  ADD UNIQUE KEY `User_ID` (`User_ID`),
+  ADD UNIQUE KEY `Organization_Branch_ID` (`Organization_Branch_ID`);
+
+--
+-- Indexes for table `case`
+--
+ALTER TABLE `case`
+  ADD PRIMARY KEY (`Case_ID`);
+
+--
+-- Indexes for table `case_requirments`
+--
+ALTER TABLE `case_requirments`
+  ADD PRIMARY KEY (`Case_ID`);
+
+--
+-- Indexes for table `customized_report`
+--
+ALTER TABLE `customized_report`
+  ADD PRIMARY KEY (`ID`),
+  ADD UNIQUE KEY `User_ID` (`User_ID`);
+
+--
+-- Indexes for table `donation`
+--
+ALTER TABLE `donation`
+  ADD PRIMARY KEY (`Sponser_ID`);
+
+--
+-- Indexes for table `equipment_type`
+--
+ALTER TABLE `equipment_type`
+  ADD PRIMARY KEY (`Equipment_Type_ID`);
+
+--
+-- Indexes for table `family`
+--
+ALTER TABLE `family`
+  ADD PRIMARY KEY (`Case_ID`);
+
+--
+-- Indexes for table `files`
+--
+ALTER TABLE `files`
+  ADD PRIMARY KEY (`ID`),
+  ADD UNIQUE KEY `File_Type_ID` (`File_Type_ID`),
+  ADD UNIQUE KEY `User_ID` (`User_ID`);
+
+--
+-- Indexes for table `file_type`
+--
+ALTER TABLE `file_type`
+  ADD PRIMARY KEY (`File_Type_ID`);
+
+--
+-- Indexes for table `food_type`
+--
+ALTER TABLE `food_type`
+  ADD PRIMARY KEY (`Food_Type_ID`);
+
+--
+-- Indexes for table `kitchen_details`
+--
+ALTER TABLE `kitchen_details`
+  ADD PRIMARY KEY (`Organization_Branch_ID`),
+  ADD UNIQUE KEY `Room_ID` (`Room_ID`),
+  ADD UNIQUE KEY `User_ID` (`User_ID`),
+  ADD UNIQUE KEY `Food_Type_ID` (`Food_Type_ID`);
+
+--
+-- Indexes for table `languages`
+--
+ALTER TABLE `languages`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `login`
+--
+ALTER TABLE `login`
+  ADD PRIMARY KEY (`User_ID`);
+
+--
+-- Indexes for table `medicine_type`
+--
+ALTER TABLE `medicine_type`
+  ADD PRIMARY KEY (`Medicine_Type_ID`);
+
+--
+-- Indexes for table `message`
+--
+ALTER TABLE `message`
+  ADD PRIMARY KEY (`ID`),
+  ADD UNIQUE KEY `Type_ID` (`Type_ID`);
+
+--
+-- Indexes for table `message_user`
+--
+ALTER TABLE `message_user`
+  ADD PRIMARY KEY (`ID`),
+  ADD UNIQUE KEY `Message_ID` (`Message_ID`),
+  ADD UNIQUE KEY `User_ID` (`User_ID`);
+
+--
+-- Indexes for table `observing_screens_type`
+--
+ALTER TABLE `observing_screens_type`
+  ADD PRIMARY KEY (`Observing_Screens_Type_ID`),
+  ADD UNIQUE KEY `Observing_Screens_Quantity` (`Observing_Screens_Quantity`),
+  ADD UNIQUE KEY `Observing_Screens_Quantity_2` (`Observing_Screens_Quantity`);
+
+--
+-- Indexes for table `options`
+--
+ALTER TABLE `options`
+  ADD PRIMARY KEY (`Options_ID`);
+
+--
+-- Indexes for table `organization`
+--
+ALTER TABLE `organization`
+  ADD PRIMARY KEY (`ID`),
+  ADD UNIQUE KEY `User_ID` (`User_ID`),
+  ADD UNIQUE KEY `Organization_Branch_ID` (`Organization_Branch_ID`);
+
+--
+-- Indexes for table `organization_maintance`
+--
+ALTER TABLE `organization_maintance`
+  ADD PRIMARY KEY (`Organization_Branch_ID`),
+  ADD UNIQUE KEY `Worker_ID` (`User_ID`);
+
+--
+-- Indexes for table `orphan`
+--
+ALTER TABLE `orphan`
+  ADD PRIMARY KEY (`Orphan_ID`);
+
+--
+-- Indexes for table `pages`
+--
+ALTER TABLE `pages`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `payment_method`
+--
+ALTER TABLE `payment_method`
+  ADD PRIMARY KEY (`Payment_ID`);
+
+--
+-- Indexes for table `payment_method_options`
+--
+ALTER TABLE `payment_method_options`
+  ADD PRIMARY KEY (`ID`),
+  ADD UNIQUE KEY `Payment_ID` (`Payment_ID`),
+  ADD UNIQUE KEY `Option_ID` (`Option_ID`);
+
+--
+-- Indexes for table `payment_method_option_value`
+--
+ALTER TABLE `payment_method_option_value`
+  ADD PRIMARY KEY (`ID`),
+  ADD UNIQUE KEY `Payment_Option_ID` (`Payment_Option_ID`),
+  ADD UNIQUE KEY `Sponser_ID` (`Sponser_ID`);
+
+--
+-- Indexes for table `pharmacy_details`
+--
+ALTER TABLE `pharmacy_details`
+  ADD PRIMARY KEY (`Organization_Branch_ID`),
+  ADD UNIQUE KEY `Room_ID` (`Room_ID`),
+  ADD UNIQUE KEY `Medicine_Type_ID` (`Medicine_Type_ID`),
+  ADD UNIQUE KEY `Equipment_Type_ID` (`Equipment_Type_ID`),
+  ADD UNIQUE KEY `User_ID` (`User_ID`);
+
+--
+-- Indexes for table `residence`
+--
+ALTER TABLE `residence`
+  ADD PRIMARY KEY (`Case_ID`);
+
+--
+-- Indexes for table `room`
+--
+ALTER TABLE `room`
+  ADD PRIMARY KEY (`ID`),
+  ADD UNIQUE KEY `User_ID` (`User_ID`),
+  ADD UNIQUE KEY `Room_ID` (`Room_ID`),
+  ADD UNIQUE KEY `Room_Type_ID` (`Room_Type_ID`),
+  ADD UNIQUE KEY `Organization_Branch_ID` (`Organization_Branch_ID`);
+
+--
+-- Indexes for table `room_type`
+--
+ALTER TABLE `room_type`
+  ADD PRIMARY KEY (`Room_Type_ID`),
+  ADD UNIQUE KEY `Room_Type` (`Room_Type`);
+
+--
+-- Indexes for table `security_details`
+--
+ALTER TABLE `security_details`
+  ADD PRIMARY KEY (`Organization_Branch_ID`),
+  ADD UNIQUE KEY `Room_ID` (`Room_ID`),
+  ADD UNIQUE KEY `Observing_Screens_Type_ID` (`Observing_Screens_Type_ID`),
+  ADD UNIQUE KEY `User_ID` (`User_ID`);
+
+--
+-- Indexes for table `sponser`
+--
+ALTER TABLE `sponser`
+  ADD PRIMARY KEY (`Sponser_ID`),
+  ADD UNIQUE KEY `Organization_Branch_ID` (`Organization_Branch_ID`);
+
+--
+-- Indexes for table `storage_details`
+--
+ALTER TABLE `storage_details`
+  ADD PRIMARY KEY (`Organization_Branch_ID`),
+  ADD UNIQUE KEY `Room_ID` (`Room_ID`),
+  ADD UNIQUE KEY `Storage_Type_ID` (`Storage_Type_ID`),
+  ADD UNIQUE KEY `User_ID` (`User_ID`);
+
+--
+-- Indexes for table `storage_type`
+--
+ALTER TABLE `storage_type`
+  ADD PRIMARY KEY (`Storage_Type_ID`);
+
+--
+-- Indexes for table `translation`
+--
+ALTER TABLE `translation`
+  ADD PRIMARY KEY (`ID`),
+  ADD UNIQUE KEY `First_Lang_Code` (`First_Lang_Code`,`Sec_Lang_Code`),
+  ADD KEY `Sec_Lang_Code` (`Sec_Lang_Code`);
+
+--
+-- Indexes for table `translation_details`
+--
+ALTER TABLE `translation_details`
+  ADD PRIMARY KEY (`ID`),
+  ADD UNIQUE KEY `Trans_ID` (`Trans_ID`),
+  ADD UNIQUE KEY `Word_ID` (`Word_ID`),
+  ADD UNIQUE KEY `Trans_Word_ID` (`Trans_Word_ID`);
+
+--
+-- Indexes for table `type`
+--
+ALTER TABLE `type`
+  ADD PRIMARY KEY (`User_Type_ID`);
+
+--
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`User_ID`),
+  ADD UNIQUE KEY `User_Type_ID` (`User_Type_ID`),
+  ADD UNIQUE KEY `User_Address_ID` (`User_Address_ID`),
+  ADD UNIQUE KEY `Organization_Branch_ID` (`Organization_Branch_ID`);
+
+--
+-- Indexes for table `user_type_pages`
+--
+ALTER TABLE `user_type_pages`
+  ADD PRIMARY KEY (`ID`),
+  ADD UNIQUE KEY `User_Type_ID` (`User_Type_ID`),
+  ADD UNIQUE KEY `Page_ID` (`Page_ID`);
+
+--
+-- Indexes for table `word`
+--
+ALTER TABLE `word`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `activties`
+--
+ALTER TABLE `activties`
+  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2009;
+
+--
+-- AUTO_INCREMENT for table `activties_type`
+--
+ALTER TABLE `activties_type`
+  MODIFY `Activites_Type_ID` int(255) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `address`
+--
+ALTER TABLE `address`
+  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `bathroom_details`
+--
+ALTER TABLE `bathroom_details`
+  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `bedroom_details`
+--
+ALTER TABLE `bedroom_details`
+  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2001;
+
+--
+-- AUTO_INCREMENT for table `case`
+--
+ALTER TABLE `case`
+  MODIFY `Case_ID` int(255) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `case_requirments`
+--
+ALTER TABLE `case_requirments`
+  MODIFY `Case_ID` int(255) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `customized_report`
+--
+ALTER TABLE `customized_report`
+  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `donation`
+--
+ALTER TABLE `donation`
+  MODIFY `Sponser_ID` int(255) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `equipment_type`
+--
+ALTER TABLE `equipment_type`
+  MODIFY `Equipment_Type_ID` int(255) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `family`
+--
+ALTER TABLE `family`
+  MODIFY `Case_ID` int(255) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `files`
+--
+ALTER TABLE `files`
+  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `file_type`
+--
+ALTER TABLE `file_type`
+  MODIFY `File_Type_ID` int(255) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `food_type`
+--
+ALTER TABLE `food_type`
+  MODIFY `Food_Type_ID` int(255) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `kitchen_details`
+--
+ALTER TABLE `kitchen_details`
+  MODIFY `Organization_Branch_ID` int(255) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `languages`
+--
+ALTER TABLE `languages`
+  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `login`
+--
+ALTER TABLE `login`
+  MODIFY `User_ID` int(255) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `medicine_type`
+--
+ALTER TABLE `medicine_type`
+  MODIFY `Medicine_Type_ID` int(255) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `message`
+--
+ALTER TABLE `message`
+  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `message_user`
+--
+ALTER TABLE `message_user`
+  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `observing_screens_type`
+--
+ALTER TABLE `observing_screens_type`
+  MODIFY `Observing_Screens_Type_ID` int(255) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `options`
+--
+ALTER TABLE `options`
+  MODIFY `Options_ID` int(255) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `organization`
+--
+ALTER TABLE `organization`
+  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2009;
+
+--
+-- AUTO_INCREMENT for table `organization_maintance`
+--
+ALTER TABLE `organization_maintance`
+  MODIFY `Organization_Branch_ID` int(255) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `orphan`
+--
+ALTER TABLE `orphan`
+  MODIFY `Orphan_ID` int(255) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `pages`
+--
+ALTER TABLE `pages`
+  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `payment_method`
+--
+ALTER TABLE `payment_method`
+  MODIFY `Payment_ID` int(255) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `payment_method_options`
+--
+ALTER TABLE `payment_method_options`
+  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `payment_method_option_value`
+--
+ALTER TABLE `payment_method_option_value`
+  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `pharmacy_details`
+--
+ALTER TABLE `pharmacy_details`
+  MODIFY `Organization_Branch_ID` int(255) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `residence`
+--
+ALTER TABLE `residence`
+  MODIFY `Case_ID` int(255) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `room`
+--
+ALTER TABLE `room`
+  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `room_type`
+--
+ALTER TABLE `room_type`
+  MODIFY `Room_Type_ID` int(255) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `security_details`
+--
+ALTER TABLE `security_details`
+  MODIFY `Organization_Branch_ID` int(255) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `sponser`
+--
+ALTER TABLE `sponser`
+  MODIFY `Sponser_ID` int(255) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `storage_details`
+--
+ALTER TABLE `storage_details`
+  MODIFY `Organization_Branch_ID` int(255) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `storage_type`
+--
+ALTER TABLE `storage_type`
+  MODIFY `Storage_Type_ID` int(255) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `translation`
+--
+ALTER TABLE `translation`
+  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `translation_details`
+--
+ALTER TABLE `translation_details`
+  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `type`
+--
+ALTER TABLE `type`
+  MODIFY `User_Type_ID` int(255) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `User_ID` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2009;
+
+--
+-- AUTO_INCREMENT for table `user_type_pages`
+--
+ALTER TABLE `user_type_pages`
+  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `word`
+--
+ALTER TABLE `word`
+  MODIFY `ID` int(255) NOT NULL AUTO_INCREMENT;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `activties`
+--
+ALTER TABLE `activties`
+  ADD CONSTRAINT `activties_ibfk_1` FOREIGN KEY (`Organization_Branch_ID`) REFERENCES `organization` (`Organization_Branch_ID`);
+
+--
+-- Constraints for table `customized_report`
+--
+ALTER TABLE `customized_report`
+  ADD CONSTRAINT `customized_report_ibfk_1` FOREIGN KEY (`User_ID`) REFERENCES `user` (`User_ID`);
+
+--
+-- Constraints for table `files`
+--
+ALTER TABLE `files`
+  ADD CONSTRAINT `files_ibfk_1` FOREIGN KEY (`File_Type_ID`) REFERENCES `file_type` (`File_Type_ID`),
+  ADD CONSTRAINT `files_ibfk_2` FOREIGN KEY (`User_ID`) REFERENCES `user` (`User_ID`);
+
+--
+-- Constraints for table `organization`
+--
+ALTER TABLE `organization`
+  ADD CONSTRAINT `organization_ibfk_1` FOREIGN KEY (`User_ID`) REFERENCES `user` (`User_ID`);
+
+--
+-- Constraints for table `room`
+--
+ALTER TABLE `room`
+  ADD CONSTRAINT `room_ibfk_1` FOREIGN KEY (`Organization_Branch_ID`) REFERENCES `organization` (`Organization_Branch_ID`);
+
+--
+-- Constraints for table `translation`
+--
+ALTER TABLE `translation`
+  ADD CONSTRAINT `translation_ibfk_3` FOREIGN KEY (`First_Lang_Code`) REFERENCES `languages` (`ID`),
+  ADD CONSTRAINT `translation_ibfk_4` FOREIGN KEY (`Sec_Lang_Code`) REFERENCES `languages` (`ID`);
+
+--
+-- Constraints for table `translation_details`
+--
+ALTER TABLE `translation_details`
+  ADD CONSTRAINT `translation_details_ibfk_1` FOREIGN KEY (`Word_ID`) REFERENCES `word` (`ID`),
+  ADD CONSTRAINT `translation_details_ibfk_2` FOREIGN KEY (`Trans_Word_ID`) REFERENCES `word` (`ID`),
+  ADD CONSTRAINT `translation_details_ibfk_3` FOREIGN KEY (`Trans_ID`) REFERENCES `translation` (`ID`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
