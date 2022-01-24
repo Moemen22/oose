@@ -1,8 +1,9 @@
 <?php
     include_once('State.php');
-    $checker=true;
-    class checkedstate implements State{
+    class checkedman implements State{
         function doAction($context){
+            $checker=true;
+
             if($paper==$valid)
             {
                 $checker = true;
@@ -13,7 +14,6 @@
                 $checker = false;
                 echo"Something went wrong in this application";
             }
-            echo "Player is in stop state";
             $context->setState($this);
         }
     }
