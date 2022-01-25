@@ -26,7 +26,7 @@
 </head>
 <body>
     
-<!--    <div class="wrapper">
+    <div class="wrapper">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
@@ -35,13 +35,13 @@
                         <a href="View/create.php" class="btn btn-success pull-right">Add New Manager</a>
                     </div>
                     <?php
-/*                    // Include config file
+                    // Include config file
                     require_once './Controller/ReadAllControllerManager.php';
-                     */?>
+                     ?>
                 </div>
             </div>        
         </div>
-    </div>-->
+    </div>
 
     <div class="wrapper">
         <div class="container-fluid">
