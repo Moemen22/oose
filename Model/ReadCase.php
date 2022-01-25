@@ -16,7 +16,7 @@ class ReadClass1 {
     public function readAll() {
 
         // Attempt select query execution
-        $sql = "SELECT * FROM case1";
+        $sql = "SELECT * FROM `case`";
         if ($result = mysqli_query($this->link, $sql)) {
             return $result;
         } else {
@@ -30,7 +30,7 @@ class ReadClass1 {
     }
 
     public function readOneRecord($id) {
-        $sql = "SELECT * FROM case1 WHERE case_id = ?";
+        $sql = "SELECT * FROM `case` WHERE case_id = ?";
 
         if ($stmt = mysqli_prepare($this->link, $sql)) {
             // Bind variables to the prepared statement as parameters

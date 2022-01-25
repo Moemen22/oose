@@ -42,7 +42,7 @@ class updateClass1 {
         mysqli_stmt_close($stmt);
 
         // Close connection
-        mysqli_close($link);
+        mysqli_close($this->link);
         return false;
     }
 

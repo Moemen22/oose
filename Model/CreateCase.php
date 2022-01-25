@@ -5,14 +5,14 @@ class CreateClass1
 {
     private $db;
 
-    public function __construct() {
-        echo 'created';
+    public function __construct()
+    {
         $this->db = new Database();
         $this->link = $this->db->connectToDB();
     }
 
     public function insertRecord($firstName, $lastname, $address ,  $type , $marital , $nanid , $jobtit ) {
-        $sql = "INSERT INTO case1 (Case_FirstName, Case_LastName,Case_address,  Case_Type , Case_MaritalStatus , Case_National_ID , Case_Job_Title) VALUES (?, ?, ?, ?, ? , ?, ?)";
+        $sql = "INSERT INTO `case` (Case_FirstName, Case_LastName,Case_address,  Case_Type , Case_Marital_Status , Case_National_ID , Case_Job_Title) VALUES (?, ?, ?, ?, ? , ?, ?)";
     
         if ($stmt = mysqli_prepare($this->link, $sql)) {
             // Bind variables to the prepared statement as parameters
@@ -35,7 +35,7 @@ class CreateClass1
                 return false;
             }
 
-            echo 'outside if';
+            
 
             // Close statement
             mysqli_stmt_close($stmt);

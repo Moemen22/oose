@@ -1,47 +1,40 @@
 <?php
+include_once 'Database.php';
 
-include_once 'C:/xampp/htdocs/Login_v1/Model/Database.php';
-
-class ReadClass1 {
-
-    //put your code here
+class login
+{
     private $db;
     private $link;
 
-    public function __construct() {
-        echo 'read';
+    public function __construct()
+    {
         $this->db = new Database();
-        $this->link = $this->db->connectToDB();
+        $this->link =  $this->db->connectToDB();
     }
 
-    public function readAll() {
-        echo 'read';
-        // Attempt select query execution
-        $sql = "SELECT * FROM `case`";
-        if ($result = mysqli_query($this->link, $sql)) {
+    public function readAll()
+    {
+        $sql = "SELECT * FROM User_ID";
+        if($result = mysqli_query($this->link,$sql)){
             return $result;
-        } else {
+         }
+        else{
             echo "ERROR: Could not able to execute $sql. " . mysqli_error($this->link);
             return false;
         }
-
-        // Close connection
         mysqli_close($this->link);
-        return false;
     }
 
-    public function readOneRecord($id) {
-        $sql = "SELECT * FROM `case` WHERE Case_ID = ?";
-
-        if ($stmt = mysqli_prepare($this->link, $sql)) {
-            // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "i", $param_id);
-
-            // Set parameters
+    public function readOneRecord($id)
+    {
+        $sql = "SELECT * FROM login WHERE User_ID = ?";
+        if($stmt = mysqli_prepare($this->link, $sql))
+        {
+            mysqli_stmt_bind_param($stmt,"i",$param_id);
             $param_id = $id;
 
-            // Attempt to execute the prepared statement
-            if (mysqli_stmt_execute($stmt)) {
+            if(mysqli_stmt_execute($stmt))
+            {
                 $result = mysqli_stmt_get_result($stmt);
 
                 if (mysqli_num_rows($result) == 1) {
@@ -50,7 +43,7 @@ class ReadClass1 {
                     $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
                     return $row;
                     // Retrieve individual field value
-                    
+
                 } else {
                     // URL doesn't contain valid id parameter. Redirect to error page
                     return false;
@@ -59,12 +52,12 @@ class ReadClass1 {
                 return false;
             }
         }
-        // Close statement
         mysqli_stmt_close($stmt);
 
         // Close connection
         mysqli_close($this->link);
         return false;
+
     }
 }
 ?>

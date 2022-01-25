@@ -35,7 +35,7 @@ class ReadClass {
 
         if ($stmt = mysqli_prepare($this->link, $sql)) {
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "i", $param_id);
+            mysqli_stmt_bind_param($stmt,"i", $param_id);
 
             // Set parameters
             $param_id = $id;
